@@ -1,5 +1,11 @@
+import MemoryGame from "./components/MemoryGame";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <MemoryGame />
+    </>
+  );
 }
 
 export default App;
