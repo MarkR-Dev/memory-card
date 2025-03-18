@@ -1,8 +1,16 @@
-.card-container {
-  border: 1px solid red;
-  width: 300px;
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
 }
 
-.card-container img {
-  max-width: 100%;
+.card-sprite {
+  width: 100%;
+}
+
+.card-name {
+  text-transform: capitalize;
+  text-align: center;
+  font-size: 1.3rem;
 }

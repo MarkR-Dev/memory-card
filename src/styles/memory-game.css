@@ -1,0 +1,71 @@
+@font-face {
+  font-family: pokemonFont;
+  src: url("../assets/Pokemon.ttf");
+}
+
+* {
+  font-family: pokemonFont;
+}
+
+html {
+  background-color: #feffff;
+}
+
+main {
+  width: 80%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.title {
+  font-size: 3rem;
+  line-height: 3.5rem;
+  text-align: center;
+}
+
+.how-to {
+  font-size: 0.9rem;
+  margin-block-start: 25px;
+  line-height: 1.5rem;
+  text-wrap: balance;
+  text-align: center;
+}
+
+.score-info-container {
+  text-align: end;
+  font-size: 1.1rem;
+  margin-block-start: 25px;
+  text-align: center;
+}
+
+.current-score {
+  margin-block-end: 10px;
+}
+
+.cards-container {
+  margin-block-start: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  border: 3px solid black;
+  border-radius: 7px;
+  outline: 3px solid black;
+  outline-offset: 3px;
+}
+
+@media screen and (width < 420px) {
+  .title {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+
+  .how-to {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+  }
+
+  .score-info-container {
+    font-size: 0.9rem;
+    line-height: 1.3rem;
+  }
+}

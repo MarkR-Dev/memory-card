@@ -28,21 +28,37 @@ function MemoryGame() {
       setSelectedIds([...selectedIds, targetId]);
     }
 
-    // Shuffle after each guess
+    // Shuffle Pokemon after each guess
     setPokemonData(shuffledPokemonData);
   }
 
   return (
     <main>
-      <div>
-        <h2>{"Current Score: " + currentScore}</h2>
-        <h2>{"Best Score: " + bestScore}</h2>
-      </div>
-      {pokemonData.map((pokemon) => {
-        return (
-          <Card key={pokemon.id} pokemon={pokemon} handleGuess={handleGuess} />
-        );
-      })}
+      <section className="info-container">
+        <div className="game-info-container">
+          <h1 className="title">Memory Game</h1>
+          <h2 className="how-to">
+            How To Play: Click on unique Pokemon to increase your score,
+            repeated guesses will reset your score to 0!
+          </h2>
+        </div>
+        <div className="score-info-container">
+          <h2 className="current-score">{"Current Score: " + currentScore}</h2>
+          <h2 className="best-score">{"Best Score: " + bestScore}</h2>
+        </div>
+      </section>
+
+      <section className="cards-container">
+        {pokemonData.map((pokemon) => {
+          return (
+            <Card
+              key={pokemon.id}
+              pokemon={pokemon}
+              handleGuess={handleGuess}
+            />
+          );
+        })}
+      </section>
     </main>
   );
 }
