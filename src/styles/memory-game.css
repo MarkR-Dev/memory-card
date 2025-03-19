@@ -13,7 +13,7 @@ html {
 
 main {
   width: 80%;
-  max-width: 1300px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 30px;
 }
@@ -26,7 +26,7 @@ main {
 
 .how-to {
   font-size: 0.9rem;
-  margin-block-start: 25px;
+  margin-block-start: 30px;
   line-height: 1.5rem;
   text-wrap: balance;
   text-align: center;
@@ -35,7 +35,7 @@ main {
 .score-info-container {
   text-align: end;
   font-size: 1.1rem;
-  margin-block-start: 25px;
+  margin-block-start: 30px;
   text-align: center;
 }
 
@@ -44,11 +44,15 @@ main {
 }
 
 .cards-container {
-  margin-block-start: 25px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  margin-block-start: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+  padding: 20px;
+
   border: 3px solid black;
-  border-radius: 7px;
+  border-radius: 6px;
   outline: 3px solid black;
   outline-offset: 3px;
 }
