@@ -1,16 +1,50 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import stockData from "../utils/stock-data";
 import generateRandomIds from "../utils/generateRandomIds";
 import shuffleArray from "../utils/shuffleArray";
+import cleanData from "../utils/cleanData";
 import Card from "./Card";
 import "../styles/memory-game.css";
 
 function MemoryGame() {
-  const [pokemonData, setPokemonData] = useState([...stockData]);
+  // const [pokemonData, setPokemonData] = useState([...stockData]);
+  const [pokemonData, setPokemonData] = useState([]);
   const [selectedIds, setSelectedIds] = useState([]);
   const [bestScore, setBestScore] = useState(0);
   const currentScore = selectedIds.length;
-  const TOTAL_POKEMON = 10;
+  const TOTAL_POKEMON = 2;
+  // useRef is used to prevent double calling the useEffect in development mode, which avoids running the fetch call twice
+  const effectRan = useRef(false);
+
+  useEffect(() => {
+    async function getPokemon(ids) {
+      try {
+        const fetched = ids.map((id) => {
+          return fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`, {
+            mode: "cors",
+          });
+        });
+        const res = await Promise.all(fetched);
+        const data = await Promise.all(res.map((res) => res.json()));
+
+        const pokemonData = cleanData(data);
+        setPokemonData(pokemonData);
+      } catch (error) {
+        console.log(error);
+        setPokemonData([...stockData]);
+      }
+    }
+
+    if (!effectRan.current) {
+      const randomIds = generateRandomIds(TOTAL_POKEMON);
+
+      getPokemon(randomIds);
+    }
+
+    return () => {
+      effectRan.current = true;
+    };
+  }, []);
 
   function handleGuess(event) {
     const targetId = event.target.closest("[data-poke-id").dataset.pokeId;
