@@ -5,6 +5,7 @@
   padding: 10px;
   flex-grow: 1;
   max-width: 250px;
+  cursor: pointer;
 }
 
 .card-sprite {

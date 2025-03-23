@@ -4,6 +4,7 @@ import generateRandomIds from "../utils/generateRandomIds";
 import shuffleArray from "../utils/shuffleArray";
 import cleanData from "../utils/cleanData";
 import * as storage from "../utils/localStorage";
+import fetchPokemon from "../utils/fetchPokemon";
 import Card from "./Card";
 import "../styles/memory-game.css";
 
@@ -14,25 +15,18 @@ function MemoryGame() {
   const currentScore = selectedIds.length;
   const TOTAL_POKEMON = 10;
   // useRef to prevent double calling the useEffect in development mode, which avoids running the fetch call twice.
-  // This probably isn't needed since swapping over to caching the data with local storage?
+  // This probably isn't needed since swapping over to caching the data with local storage
   const effectRan = useRef(false);
 
   useEffect(() => {
     async function getPokemon(ids) {
       try {
-        const fetchedPromises = ids.map((id) => {
-          return fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`, {
-            mode: "cors",
-          });
-        });
-        const responses = await Promise.all(fetchedPromises);
-        const data = await Promise.all(responses.map((res) => res.json()));
+        const data = await fetchPokemon(ids);
 
         const pokemonData = cleanData(data);
         setPokemonData(pokemonData);
         storage.setLocalStorage(pokemonData);
-      } catch (error) {
-        console.log(error);
+      } catch {
         setPokemonData([...stockData]);
         storage.setLocalStorage(stockData);
       }
@@ -53,6 +47,20 @@ function MemoryGame() {
       effectRan.current = true;
     };
   }, []);
+
+  async function getNewPokemon() {
+    try {
+      const randomIds = generateRandomIds(TOTAL_POKEMON);
+      const data = await fetchPokemon(randomIds);
+
+      const pokemonData = cleanData(data);
+      setPokemonData(pokemonData);
+      storage.setLocalStorage(pokemonData);
+    } catch {
+      setPokemonData([...stockData]);
+      storage.setLocalStorage(stockData);
+    }
+  }
 
   function handleGuess(event) {
     const targetId = event.target.closest("[data-poke-id").dataset.pokeId;
@@ -84,6 +92,9 @@ function MemoryGame() {
             repeated guesses will reset your score to 0!
           </h2>
         </div>
+        <button type="button" className="new-pokemon" onClick={getNewPokemon}>
+          New Pokemon
+        </button>
         <div className="score-info-container">
           <h2 className="current-score">{"Current Score: " + currentScore}</h2>
           <h2 className="best-score">{"Best Score: " + bestScore}</h2>
