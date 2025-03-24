@@ -6,9 +6,10 @@ The fetched data from the Pokemon API is stored locally via local storage web AP
 
 Some improvements that could be made if I were to spend more time on this project:
 
-- Loading spinner when fetching intial and new data to inform the user that an action is being performed on the page
+- Loading spinner when fetching initial and new data to inform the user that an action is being performed on the page
 - Better styling and layout
-- Better error handling within the fetch calls, shouldn't fetch any more data if encountering an error on the current fetch,return the stock data instead
+- Better error handling within the fetch calls, shouldn't fetch any more data if encountering an error on the current fetch, return the stock data instead
+- Read up on Abort Controller
 
 Pokemon API
 https://pokeapi.co/
