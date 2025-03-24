@@ -1,5 +1,5 @@
 // Create an array of fetch promises by mapping over the Ids, wait for them to fulfill and convert the responses to json
-// Return a rejected promise if any errors and handle that where this function is used
+// Return a rejected promise if any errors occur and handle that where this function is used
 async function fetchPokemon(ids) {
   try {
     const fetchedPromises = ids.map((id) => {

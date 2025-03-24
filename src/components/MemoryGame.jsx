@@ -15,7 +15,7 @@ function MemoryGame() {
   const currentScore = selectedIds.length;
   const TOTAL_POKEMON = 10;
   // useRef to prevent double calling the useEffect in development mode, which avoids running the fetch call twice.
-  // This probably isn't needed since swapping over to caching the data with local storage
+  // This probably isn't needed since swapping over to caching the data with local storage.
   const effectRan = useRef(false);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ function MemoryGame() {
         storage.setLocalStorage(stockData);
       }
     }
-
+    // If the effect hasn't already ran perform the fetch - redundant now
     if (!effectRan.current) {
       const cachedData = storage.getLocalStorage();
       if (cachedData !== null) {

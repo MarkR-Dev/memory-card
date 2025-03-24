@@ -1,4 +1,4 @@
-//Fisher-Yates shuffle in place swaps two array index values by using a temp variable, used a copy of the array to avoid manipulating state
+// Fisher-Yates shuffle in place swaps two array index values by using a temp variable, used a copy of the array to avoid any manipulating state issues
 function shuffleArray(arr) {
   const copy = [...arr];
   let i = copy.length;

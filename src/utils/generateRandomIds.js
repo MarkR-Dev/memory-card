@@ -1,3 +1,4 @@
+// Generate unique random Ids representing the pokemon Ids used in the PokeAPI, limiting the creation to the first 151 pokemon (gen 1)
 function makeRandomIds(total) {
   const randomIds = [];
 

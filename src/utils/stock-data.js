@@ -1,4 +1,4 @@
-// Stock data to avoid re-fetching every time
+// Stock data to avoid re-fetching during development
 const stockData = [
   {
     name: "bulbasaur",
